@@ -1886,6 +1886,114 @@ svg {
   min-width: 0;
 }
 
+/* Seletor de clientes para metas */
+
+.customer-picker__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.customer-picker__count {
+  color: var(--text-faint);
+  font-size: 0.75rem;
+  font-weight: 650;
+}
+
+.customer-picker__actions {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.customer-picker__list {
+  display: flex;
+  max-height: 240px;
+  overflow-y: auto;
+  margin-top: 10px;
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--canvas);
+  flex-direction: column;
+  gap: 2px;
+}
+
+.customer-picker__list--compact {
+  max-height: none;
+  overflow: visible;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.customer-picker__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.customer-picker__item:hover {
+  background: var(--surface);
+}
+
+.customer-picker__item input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  accent-color: #2d9878;
+  flex: 0 0 auto;
+}
+
+.customer-picker__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.customer-picker__info strong {
+  font-size: 0.85rem;
+  font-weight: 650;
+}
+
+.customer-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 0.8rem;
+  font-weight: 650;
+}
+
+.customer-chip--more {
+  color: var(--text-faint);
+  background: var(--canvas);
+}
+
+.customer-chip__meta {
+  color: var(--text-faint);
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.goal-preview {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  color: #14532d;
+  background: var(--success-soft);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
 @media (max-width: 860px) {
   .panel__header {
     flex-direction: column;

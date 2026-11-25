@@ -318,7 +318,11 @@ export const goalsApi = {
   },
 
   updateCustomerGoal(goalId: string, customerId: string, amount: number, signal?: AbortSignal) {
-    return apiRequest<unknown>(`/goals/${goalId}/customers/${customerId}`, {
+    return apiRequest<{
+      customerGoalId: string;
+      amount: number;
+      monthlyGoalTotalAmount: number;
+    }>(`/goals/${goalId}/customers/${customerId}`, {
       method: 'PATCH',
       body: { amount },
       signal,
