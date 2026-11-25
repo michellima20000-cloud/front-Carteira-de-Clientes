@@ -4,7 +4,6 @@ import { authApi } from '../api/authApi'
 import { ApiError } from '../api/http'
 
 export default function SignupPage() {
-  const [accountName, setAccountName] = useState('')
   const [nome, setNome] = useState('')
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
@@ -20,15 +19,15 @@ export default function SignupPage() {
     setEnviando(true)
 
     try {
+      const nomeCompleto = nome.trim()
       await authApi.signup({
-        accountName: accountName.trim(),
-        name: nome.trim(),
+        accountName: `Conta de ${nomeCompleto}`,
+        name: nomeCompleto,
         email: email.trim(),
         password: senha,
       })
 
       setSucesso('Conta criada com sucesso! Redirecionando para o login...')
-      setAccountName('')
       setNome('')
       setEmail('')
       setSenha('')
@@ -76,25 +75,6 @@ export default function SignupPage() {
           )}
 
           <form className="form-stack" onSubmit={handleSubmit} noValidate>
-            <div className="field-group">
-              <label htmlFor="signup-account">Nome da empresa / conta</label>
-              <div className="input-wrap">
-                <input
-                  id="signup-account"
-                  name="accountName"
-                  type="text"
-                  value={accountName}
-                  onChange={(event) => setAccountName(event.target.value)}
-                  autoComplete="organization"
-                  placeholder="Ex: Minha Empresa"
-                  minLength={2}
-                  maxLength={100}
-                  disabled={enviando}
-                  required
-                />
-              </div>
-            </div>
-
             <div className="field-group">
               <label htmlFor="signup-nome">Nome completo</label>
               <div className="input-wrap">
