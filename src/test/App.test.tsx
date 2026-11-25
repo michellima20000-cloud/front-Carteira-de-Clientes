@@ -8,6 +8,7 @@ import { tokenStore } from '../api/tokenStore';
 
 vi.mock('../api/authApi', () => ({
   authApi: {
+    signup: vi.fn(),
     login: vi.fn(),
     refresh: vi.fn(),
     me: vi.fn(),

@@ -22,6 +22,8 @@ export interface ApiRequestOptions {
   signal?: AbortSignal;
   auth?: boolean;
   retryOnUnauthorized?: boolean;
+  /** Quando false, mantém o envelope completo da API (data + meta). */
+  unwrap?: boolean;
 }
 
 type UnauthorizedHandler = () => Promise<boolean>;
@@ -151,7 +153,7 @@ async function executeRequest<T>(
     throw new ApiError(message, response.status, code, payload);
   }
 
-  if (payload && typeof payload === 'object' && 'data' in payload) {
+  if (options.unwrap !== false && payload && typeof payload === 'object' && 'data' in payload) {
     return (payload as { data: T }).data;
   }
 

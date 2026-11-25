@@ -53,6 +53,102 @@ export function AppShell({ children }: AppShellProps) {
             Visão geral
           </NavLink>
           <NavLink
+            to="/clientes"
+            className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="9" cy="8" r="3.2" />
+              <path d="M3.5 19a5.5 5.5 0 0 1 11 0" />
+              <path d="M16 11.2a2.6 2.6 0 1 0 0-5.2" />
+              <path d="M17 19a5 5 0 0 0-2.4-4.3" />
+            </svg>
+            Clientes
+          </NavLink>
+          <NavLink
+            to="/vendas"
+            className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 19V9M10 19V5M16 19v-7M22 19H2" />
+            </svg>
+            Vendas
+          </NavLink>
+          <NavLink
+            to="/metas"
+            className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="8" />
+              <circle cx="12" cy="12" r="3.4" />
+              <path d="m15.5 8.5 4-4" />
+            </svg>
+            Metas
+          </NavLink>
+
+          <p className="sidebar__label">Atendimento</p>
+          <NavLink
+            to="/conversas"
+            className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 5h16v11H9l-5 4z" />
+            </svg>
+            Conversas
+          </NavLink>
+          <NavLink
+            to="/respostas-rapidas"
+            className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M13 3 5 13h6l-1 8 8-10h-6z" />
+            </svg>
+            Respostas rápidas
+          </NavLink>
+          <NavLink
+            to="/templates"
+            className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="4" y="3" width="16" height="18" rx="2" />
+              <path d="M8 8h8M8 12h8M8 16h5" />
+            </svg>
+            Templates
+          </NavLink>
+          <NavLink
+            to="/bloqueados"
+            className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="8" />
+              <path d="m6 6 12 12" />
+            </svg>
+            Bloqueados
+          </NavLink>
+
+          <p className="sidebar__label">Dados</p>
+          <NavLink
+            to="/importar"
+            className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3v11M8 10l4 4 4-4" />
+              <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+            </svg>
+            Importar
+          </NavLink>
+          <NavLink
+            to="/equipe"
+            className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="9" cy="8" r="3.2" />
+              <path d="M3.5 19a5.5 5.5 0 0 1 11 0" />
+              <path d="M16 11.2a2.6 2.6 0 1 0 0-5.2" />
+              <path d="M17 19a5 5 0 0 0-2.4-4.3" />
+            </svg>
+            Equipe
+          </NavLink>
+          <NavLink
             to="/conta"
             className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`}
           >

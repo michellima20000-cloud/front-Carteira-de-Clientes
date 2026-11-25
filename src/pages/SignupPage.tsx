@@ -1,51 +1,51 @@
-import { useState, type FormEvent } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-import { authApi } from '../api/authApi'
-import { ApiError } from '../api/http'
+import { useState, type FormEvent } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { authApi } from '../api/authApi';
+import { ApiError } from '../api/http';
 
 export default function SignupPage() {
-  const [nome, setNome] = useState('')
-  const [email, setEmail] = useState('')
-  const [senha, setSenha] = useState('')
-  const [sucesso, setSucesso] = useState<string | null>(null)
-  const [erro, setErro] = useState<string | null>(null)
-  const [enviando, setEnviando] = useState(false)
-  const navigate = useNavigate()
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [sucesso, setSucesso] = useState<string | null>(null);
+  const [erro, setErro] = useState<string | null>(null);
+  const [enviando, setEnviando] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setErro(null)
-    setSucesso(null)
-    setEnviando(true)
+    e.preventDefault();
+    setErro(null);
+    setSucesso(null);
+    setEnviando(true);
 
     try {
-      const nomeCompleto = nome.trim()
+      const nomeCompleto = nome.trim();
       await authApi.signup({
         accountName: `Conta de ${nomeCompleto}`,
         name: nomeCompleto,
         email: email.trim(),
         password: senha,
-      })
+      });
 
-      setSucesso('Conta criada com sucesso! Redirecionando para o login...')
-      setNome('')
-      setEmail('')
-      setSenha('')
-      setTimeout(() => navigate('/entrar'), 1500)
+      setSucesso('Conta criada com sucesso! Redirecionando para o login...');
+      setNome('');
+      setEmail('');
+      setSenha('');
+      setTimeout(() => navigate('/entrar'), 1500);
     } catch (err) {
       if (err instanceof ApiError) {
-        setErro(err.message)
+        setErro(err.message);
       } else {
         setErro(
           err instanceof Error
             ? err.message
             : 'Não foi possível conectar ao servidor. Verifique sua conexão.',
-        )
+        );
       }
     } finally {
-      setEnviando(false)
+      setEnviando(false);
     }
-  }
+  };
 
   return (
     <main className="auth-layout">
@@ -145,5 +145,5 @@ export default function SignupPage() {
         </div>
       </section>
     </main>
-  )
+  );
 }
