@@ -64,6 +64,19 @@ describe('autenticação e proteção de rotas', () => {
     });
   });
 
+  it('mantém o sistema disponível quando a API está degradada, mas o banco responde', async () => {
+    vi.mocked(authApi.health).mockResolvedValue({
+      status: 'degraded',
+      database: 'up',
+      redis: 'down',
+    });
+
+    render(<App />);
+
+    expect(await screen.findByText('Sistema disponível com restrições')).toBeInTheDocument();
+    expect(screen.queryByText('Serviço temporariamente indisponível')).not.toBeInTheDocument();
+  });
+
   it('realiza login, confirma a conta e abre o painel protegido', async () => {
     const user = userEvent.setup();
     render(<App />);

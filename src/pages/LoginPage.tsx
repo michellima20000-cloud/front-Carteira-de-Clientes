@@ -11,7 +11,23 @@ interface FieldErrors {
   password?: string;
 }
 
-type ServiceState = 'checking' | 'online' | 'offline';
+type ServiceState = 'checking' | 'online' | 'degraded' | 'offline';
+
+function getServiceState(health: {
+  status: 'ok' | 'degraded' | 'down';
+  database: 'up' | 'down';
+  redis: 'up' | 'down';
+}): ServiceState {
+  if (health.database !== 'up' || health.status === 'down') {
+    return 'offline';
+  }
+
+  if (health.status === 'ok' && health.redis === 'up') {
+    return 'online';
+  }
+
+  return 'degraded';
+}
 
 function getErrorMessage(error: unknown): string {
   if (error instanceof ApiError) {
@@ -43,11 +59,7 @@ export function LoginPage() {
       .health(controller.signal)
       .then((health) => {
         if (!controller.signal.aborted) {
-          setServiceState(
-            health.status === 'ok' && health.database === 'up' && health.redis === 'up'
-              ? 'online'
-              : 'offline',
-          );
+          setServiceState(getServiceState(health));
         }
       })
       .catch(() => {
@@ -151,7 +163,9 @@ export function LoginPage() {
                 ? 'Verificando serviço'
                 : serviceState === 'online'
                   ? 'Sistema operacional'
-                  : 'Serviço temporariamente indisponível'}
+                  : serviceState === 'degraded'
+                    ? 'Sistema disponível com restrições'
+                    : 'Serviço temporariamente indisponível'}
             </span>
             <p className="eyebrow">Bem-vindo de volta</p>
             <h2 id="login-title">Entre na sua conta</h2>

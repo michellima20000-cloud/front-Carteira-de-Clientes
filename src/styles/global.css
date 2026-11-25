@@ -446,6 +446,11 @@ svg {
   box-shadow: 0 0 0 3px rgb(45 152 120 / 13%);
 }
 
+.service-indicator--degraded > span {
+  background: var(--gold-600);
+  box-shadow: 0 0 0 3px rgb(201 130 22 / 14%);
+}
+
 .service-indicator--offline > span {
   background: var(--danger);
   box-shadow: 0 0 0 3px rgb(179 59 59 / 12%);

@@ -36,7 +36,7 @@ export interface SignupCredentials {
 }
 
 export interface HealthStatus {
-  status: 'ok';
+  status: 'ok' | 'degraded' | 'down';
   database: 'up' | 'down';
   redis: 'up' | 'down';
 }
