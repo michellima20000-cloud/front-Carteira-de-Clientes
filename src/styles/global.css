@@ -1996,6 +1996,115 @@ svg {
 
 /* Conexão WhatsApp */
 
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+  padding: 5px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  width: fit-content;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.tabs__tab {
+  padding: 9px 18px;
+  border: 0;
+  border-radius: 999px;
+  color: var(--text-soft);
+  background: transparent;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.tabs__tab--active {
+  color: var(--navy-900);
+  background: var(--navy-50);
+}
+
+.qr-connect {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 34px;
+  flex-wrap: wrap;
+}
+
+.qr-connect__code {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+}
+
+.qr-canvas {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.qr-connect__hint {
+  margin: 0;
+  max-width: 260px;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.qr-connect__done {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+  padding: 26px 22px;
+  border-radius: var(--radius-md);
+  background: var(--success-soft);
+  color: #14532d;
+  text-align: center;
+  max-width: 300px;
+}
+
+.qr-connect__done strong {
+  font-size: 1rem;
+}
+
+.qr-connect__done span:last-child {
+  font-size: 0.8rem;
+}
+
+.qr-connect__check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: #fff;
+  background: #2d9878;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.qr-connect__actions {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.qr-connect__code-alternative {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.8rem;
+}
+
 .copy-field {
   display: flex;
   align-items: center;
@@ -2020,7 +2129,7 @@ svg {
 }
 
 .step-list {
-  margin: 6px 0 0;
+  margin: 18px 0 0;
   padding-left: 20px;
   color: var(--text-soft);
   font-size: 0.84rem;
@@ -2066,6 +2175,15 @@ svg {
   .connect-banner {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .tabs {
+    width: 100%;
+  }
+
+  .tabs__tab {
+    flex: 1;
+    text-align: center;
   }
 }
 

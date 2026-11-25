@@ -64,8 +64,8 @@ export function ConversationsPage() {
 
   useEffect(() => {
     void whatsappApi
-      .getConfig()
-      .then((result) => setWhatsappConnected(result.connected))
+      .getQr()
+      .then((result) => setWhatsappConnected(result.status === 'CONNECTED'))
       .catch(() => setWhatsappConnected(null));
   }, []);
 
@@ -137,7 +137,7 @@ export function ConversationsPage() {
             <strong>Conecte seu WhatsApp</strong>
             <p>
               As mensagens recebidas pelo seu número só aparecem aqui depois de conectar o
-              WhatsApp Business.
+              WhatsApp. Leve o QR Code do celular em 2 minutos.
             </p>
           </div>
           <a className="button button--primary button--small" href="/whatsapp">

@@ -537,6 +537,23 @@ export interface WhatsappTestResult {
   testedAt: string;
 }
 
+export type QrSessionStatus =
+  | 'IDLE'
+  | 'CONNECTING'
+  | 'AWAITING_SCAN'
+  | 'CONNECTED'
+  | 'DISCONNECTED'
+  | 'ERROR';
+
+export interface QrSessionState {
+  status: QrSessionStatus;
+  qr: string | null;
+  pairingCode: string | null;
+  phoneNumber: string | null;
+  error: string | null;
+  updatedAt: string;
+}
+
 export const whatsappApi = {
   getConfig(signal?: AbortSignal) {
     return apiRequest<WhatsappConfig>('/whatsapp/config', { method: 'GET', signal });
@@ -568,6 +585,22 @@ export const whatsappApi = {
 
   disconnect(signal?: AbortSignal) {
     return apiRequest<void>('/whatsapp/config', { method: 'DELETE', signal });
+  },
+
+  getQr(signal?: AbortSignal) {
+    return apiRequest<QrSessionState>('/whatsapp/qr', { method: 'GET', signal });
+  },
+
+  startQr(signal?: AbortSignal) {
+    return apiRequest<QrSessionState>('/whatsapp/qr/start', { method: 'POST', signal });
+  },
+
+  refreshQr(signal?: AbortSignal) {
+    return apiRequest<QrSessionState>('/whatsapp/qr/refresh', { method: 'POST', signal });
+  },
+
+  disconnectQr(signal?: AbortSignal) {
+    return apiRequest<QrSessionState>('/whatsapp/qr/disconnect', { method: 'POST', signal });
   },
 };
 
