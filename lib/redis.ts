@@ -1,11 +1,7 @@
-import { Redis } from '@upstash/redis';
+// @ts-expect-error: tipos do @upstash/redis podem variar por versão
+import { createUpstashRedis } from "@upstash/redis";
 
-// Cliente Upstash Redis (REST). Lê UPSTASH_REDIS_REST_URL e
-// UPSTASH_REDIS_REST_TOKEN do ambiente quando disponíveis.
-export const redis =
-  process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
-    ? new Redis({
-        url: process.env.UPSTASH_REDIS_REST_URL,
-        token: process.env.UPSTASH_REDIS_REST_TOKEN,
-      })
-    : null;
+export const redis = createUpstashRedis({
+  url: process.env.UPSTASH_REDIS_REST_URL!,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+});

@@ -30,9 +30,11 @@ export interface LoginCredentials {
 }
 
 export interface SignupCredentials {
-  nome: string;
+  accountName: string;
+  name: string;
   email: string;
-  senha: string;
+  password: string;
+  timezone?: string;
 }
 
 export interface HealthStatus {
@@ -59,8 +61,9 @@ async function requestTokenRefresh(refreshToken: string, signal?: AbortSignal): 
 }
 
 export const authApi = {
+  /** Cria uma nova conta + usuário OWNER e retorna a sessão. */
   signup(credentials: SignupCredentials, signal?: AbortSignal): Promise<AuthData> {
-    return apiRequest<AuthData>('/auth/signup', {
+    return apiRequest<AuthData>('/auth/register', {
       method: 'POST',
       body: credentials,
       auth: false,
