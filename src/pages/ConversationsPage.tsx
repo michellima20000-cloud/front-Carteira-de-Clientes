@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState, type FormEvent } from 'react';
 import {
   conversationsApi,
+  whatsappApi,
   type Conversation,
   type ConversationStatus,
   type Message,
@@ -36,6 +37,7 @@ export function ConversationsPage() {
   const [messagesLoading, setMessagesLoading] = useState(false);
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
+  const [whatsappConnected, setWhatsappConnected] = useState<boolean | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -59,6 +61,13 @@ export function ConversationsPage() {
   useEffect(() => {
     void load();
   }, [load]);
+
+  useEffect(() => {
+    void whatsappApi
+      .getConfig()
+      .then((result) => setWhatsappConnected(result.connected))
+      .catch(() => setWhatsappConnected(null));
+  }, []);
 
   const loadMessages = useCallback(async (conversationId: string) => {
     setMessagesLoading(true);
@@ -113,9 +122,29 @@ export function ConversationsPage() {
         eyebrow="Atendimento"
         title="Conversas"
         description="Acompanhe o atendimento das conversas de WhatsApp da sua carteira."
+        actions={
+          <a className="button button--secondary" href="/whatsapp">
+            {whatsappConnected ? 'Configurar WhatsApp' : 'Conectar WhatsApp'}
+          </a>
+        }
       />
 
       {error && <Feedback tone="error">{error}</Feedback>}
+
+      {whatsappConnected === false && (
+        <div className="connect-banner">
+          <div>
+            <strong>Conecte seu WhatsApp</strong>
+            <p>
+              As mensagens recebidas pelo seu número só aparecem aqui depois de conectar o
+              WhatsApp Business.
+            </p>
+          </div>
+          <a className="button button--primary button--small" href="/whatsapp">
+            Conectar agora
+          </a>
+        </div>
+      )}
 
       <Panel
         title="Caixa de entrada"

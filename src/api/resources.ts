@@ -516,6 +516,62 @@ export const templatesApi = {
 };
 
 /* ------------------------------------------------------------------ */
+/* WhatsApp                                                            */
+/* ------------------------------------------------------------------ */
+
+export interface WhatsappConfig {
+  connected: boolean;
+  accountId: string;
+  webhookUrl: string;
+  phoneNumber: string | null;
+  phoneNumberId: string | null;
+  provider: string | null;
+  accessTokenHint: string | null;
+  webhookSecret: string | null;
+  updatedAt: string | null;
+}
+
+export interface WhatsappTestResult {
+  valid: boolean;
+  detail: string;
+  testedAt: string;
+}
+
+export const whatsappApi = {
+  getConfig(signal?: AbortSignal) {
+    return apiRequest<WhatsappConfig>('/whatsapp/config', { method: 'GET', signal });
+  },
+
+  saveConfig(
+    input: {
+      phoneNumber: string;
+      phoneNumberId?: string | undefined;
+      provider?: 'META';
+      accessToken: string;
+      webhookSecret?: string | undefined;
+    },
+    signal?: AbortSignal,
+  ) {
+    return apiRequest<WhatsappConfig>('/whatsapp/config', {
+      method: 'PUT',
+      body: input,
+      signal,
+    });
+  },
+
+  testConnection(signal?: AbortSignal) {
+    return apiRequest<WhatsappTestResult>('/whatsapp/config/test', {
+      method: 'POST',
+      signal,
+    });
+  },
+
+  disconnect(signal?: AbortSignal) {
+    return apiRequest<void>('/whatsapp/config', { method: 'DELETE', signal });
+  },
+};
+
+/* ------------------------------------------------------------------ */
 /* Equipe                                                              */
 /* ------------------------------------------------------------------ */
 

@@ -15,6 +15,7 @@ import { QuickRepliesPage } from './pages/QuickRepliesPage';
 import { SalesPage } from './pages/SalesPage';
 import { TeamPage } from './pages/TeamPage';
 import { TemplatesPage } from './pages/TemplatesPage';
+import { WhatsappPage } from './pages/WhatsappPage';
 import { ProtectedRoute } from './routes/ProtectedRoute';
 import { PublicOnlyRoute } from './routes/PublicOnlyRoute';
 
@@ -45,6 +46,7 @@ export default function App() {
             <Route path="/vendas" element={<SalesPage />} />
             <Route path="/metas" element={<GoalsPage />} />
             <Route path="/conversas" element={<ConversationsPage />} />
+            <Route path="/whatsapp" element={<WhatsappPage />} />
             <Route path="/respostas-rapidas" element={<QuickRepliesPage />} />
             <Route path="/bloqueados" element={<BlocklistPage />} />
             <Route path="/templates" element={<TemplatesPage />} />

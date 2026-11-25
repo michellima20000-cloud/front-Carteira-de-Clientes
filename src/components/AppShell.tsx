@@ -87,6 +87,16 @@ export function AppShell({ children }: AppShellProps) {
 
           <p className="sidebar__label">Atendimento</p>
           <NavLink
+            to="/whatsapp"
+            className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z" />
+              <path d="M9 9.5c0 3 2.5 5.5 5.5 5.5" />
+            </svg>
+            WhatsApp
+          </NavLink>
+          <NavLink
             to="/conversas"
             className={({ isActive }) => `sidebar__link ${isActive ? 'sidebar__link--active' : ''}`}
           >

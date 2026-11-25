@@ -1994,6 +1994,81 @@ svg {
   font-weight: 600;
 }
 
+/* Conexão WhatsApp */
+
+.copy-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.copy-field .filter-bar__input {
+  flex: 1;
+  min-width: 0;
+}
+
+.copy-field input {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.8rem;
+}
+
+.form-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.step-list {
+  margin: 6px 0 0;
+  padding-left: 20px;
+  color: var(--text-soft);
+  font-size: 0.84rem;
+  line-height: 1.65;
+}
+
+.step-list li {
+  margin-bottom: 6px;
+}
+
+.step-list code {
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: var(--canvas);
+  font-size: 0.78rem;
+}
+
+.connect-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 22px;
+  padding: 18px 22px;
+  border: 1px solid var(--gold-200, #ecd9a6);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(120deg, #fffaf0, #ffffff);
+}
+
+.connect-banner strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 750;
+}
+
+.connect-banner p {
+  margin: 4px 0 0;
+  color: var(--text-soft);
+  font-size: 0.83rem;
+}
+
+@media (max-width: 860px) {
+  .connect-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 @media (max-width: 860px) {
   .panel__header {
     flex-direction: column;
