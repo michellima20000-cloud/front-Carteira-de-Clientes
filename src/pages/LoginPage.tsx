@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { authApi } from '../api/authApi';
 import { ApiError } from '../api/http';
 import { useAuth } from '../auth/AuthContext';
@@ -253,7 +253,10 @@ export function LoginPage() {
           </form>
 
           <p className="login-card__help">
-            Precisa de ajuda para acessar? Fale com o responsável pela sua conta.
+            Ainda não tem conta?{' '}
+            <Link to="/signup" className="login-card__signup-link">
+              Criar conta
+            </Link>
           </p>
         </div>
       </section>

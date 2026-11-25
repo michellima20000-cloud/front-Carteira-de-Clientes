@@ -546,6 +546,42 @@ svg {
   text-align: center;
 }
 
+.login-card__help a,
+.login-card__signup-link {
+  color: var(--gold-600);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.login-card__help a:hover,
+.login-card__signup-link:hover {
+  color: var(--text);
+}
+
+.error-notice--simple,
+.success-notice {
+  display: block;
+  margin-bottom: 22px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.error-notice--simple {
+  border: 1px solid #f0c8c5;
+  color: #7e2929;
+  background: var(--danger-soft);
+}
+
+.success-notice {
+  border: 1px solid #b7dfc6;
+  color: #14532d;
+  background: #e8f7ee;
+}
+
 .error-notice {
   display: grid;
   grid-template-columns: auto 1fr auto;

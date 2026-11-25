@@ -29,6 +29,12 @@ export interface LoginCredentials {
   password: string;
 }
 
+export interface SignupCredentials {
+  nome: string;
+  email: string;
+  senha: string;
+}
+
 export interface HealthStatus {
   status: 'ok';
   database: 'up' | 'down';
@@ -53,6 +59,16 @@ async function requestTokenRefresh(refreshToken: string, signal?: AbortSignal): 
 }
 
 export const authApi = {
+  signup(credentials: SignupCredentials, signal?: AbortSignal): Promise<AuthData> {
+    return apiRequest<AuthData>('/auth/signup', {
+      method: 'POST',
+      body: credentials,
+      auth: false,
+      retryOnUnauthorized: false,
+      signal,
+    });
+  },
+
   login(credentials: LoginCredentials, signal?: AbortSignal): Promise<AuthData> {
     return apiRequest<AuthData>('/auth/login', {
       method: 'POST',
