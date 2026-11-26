@@ -356,6 +356,7 @@ export function WhatsappPage() {
                   <Feedback tone="warning">
                     A sessão não está sendo salva no servidor. Depois de um reinício será
                     necessário escanear o QR Code novamente.
+                    {qr.storageError ? ` (${qr.storageError})` : ''}
                   </Feedback>
                 )}
               </div>

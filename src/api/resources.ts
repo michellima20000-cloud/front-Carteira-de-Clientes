@@ -553,6 +553,8 @@ export interface QrSessionState {
   error: string | null;
   /** `unavailable` = a sessão não está sendo salva no servidor. */
   storage: 'ok' | 'unavailable';
+  /** Detalhe do erro de persistência. */
+  storageError?: string | null;
   updatedAt: string;
 }
 
