@@ -120,8 +120,13 @@ export function WhatsappPage() {
     setError(null);
     setNotice(null);
     try {
-      setQr(await whatsappApi.startQr());
-      setNotice('QR Code gerado. Escaneie com o seu celular.');
+      const result = await whatsappApi.startQr();
+      setQr(result);
+      setNotice(
+        result.qr
+          ? 'QR Code gerado. Escaneie com o seu celular.'
+          : 'Preparando o QR Code... ele aparece em alguns segundos.',
+      );
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Não foi possível gerar o QR Code.');
     } finally {
@@ -133,7 +138,9 @@ export function WhatsappPage() {
     setBusy(true);
     setError(null);
     try {
-      setQr(await whatsappApi.refreshQr());
+      const result = await whatsappApi.refreshQr();
+      setQr(result);
+      setNotice('Novo QR Code gerado. Escaneie com o seu celular.');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Não foi possível renovar o QR Code.');
     } finally {
@@ -275,6 +282,14 @@ export function WhatsappPage() {
                       Número: {qr.phoneNumber ?? '—'} — as mensagens já chegam em Conversas.
                     </span>
                   </div>
+                ) : qr?.status === 'CONNECTING' ? (
+                  <div className="qr-connect__done">
+                    <span className="qr-connect__check" aria-hidden="true">
+                      …
+                    </span>
+                    <strong>Preparando a conexão</strong>
+                    <span>O QR Code aparece em alguns segundos. Não feche esta tela.</span>
+                  </div>
                 ) : (
                   <EmptyState
                     title="Nenhum QR Code ativo"
@@ -303,7 +318,7 @@ export function WhatsappPage() {
                     >
                       {busy ? 'Gerando...' : 'Gerar QR Code'}
                     </button>
-                    {qr?.qr && (
+                    {(qr?.qr || qr?.error) && (
                       <button
                         className="button button--secondary"
                         type="button"
@@ -323,7 +338,11 @@ export function WhatsappPage() {
                   </p>
                 )}
 
-                {qr?.error && <p className="field-error">{qr.error}</p>}
+                {qr?.error && (
+                  <Feedback tone="error">
+                    {qr.error} Se o problema continuar, clique em “Gerar novo QR Code”.
+                  </Feedback>
+                )}
               </div>
             </div>
 

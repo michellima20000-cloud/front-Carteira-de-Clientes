@@ -147,9 +147,29 @@ async function executeRequest<T>(
         ? 'Sua sessão expirou. Entre novamente para continuar.'
         : 'Não foi possível concluir a solicitação. Tente novamente.';
     const message = extractErrorMessage(payload, fallback);
-    const details = payload as { code?: unknown } | null;
-    const code = typeof details?.code === 'string' ? details.code : undefined;
+    const envelope = payload as { code?: unknown; error?: { code?: unknown } } | null;
+    const code =
+      typeof envelope?.error?.code === 'string'
+        ? envelope.error.code
+        : typeof envelope?.code === 'string'
+          ? envelope.code
+          : undefined;
 
+    throw new ApiError(message, response.status, code, payload);
+  }
+
+  // Some endpoints may return an error envelope with HTTP 200.
+  // If there is no data, treat it as a failure so the UI can display the message.
+  if (
+    options.unwrap !== false &&
+    payload &&
+    typeof payload === 'object' &&
+    'error' in payload &&
+    !('data' in payload)
+  ) {
+    const message = extractErrorMessage(payload, 'Não foi possível concluir a solicitação.');
+    const envelope = payload as { error?: { code?: unknown } };
+    const code = typeof envelope.error?.code === 'string' ? envelope.error.code : undefined;
     throw new ApiError(message, response.status, code, payload);
   }
 
