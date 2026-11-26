@@ -62,12 +62,21 @@ export function Panel({
 /* Avisos                                                              */
 /* ------------------------------------------------------------------ */
 
-export function Feedback({ tone, children }: { tone: 'error' | 'success'; children: ReactNode }) {
-  return (
-    <div className={tone === 'error' ? 'error-notice error-notice--simple' : 'success-notice'}>
-      {children}
-    </div>
-  );
+export function Feedback({
+  tone,
+  children,
+}: {
+  tone: 'error' | 'success' | 'warning';
+  children: ReactNode;
+}) {
+  const className =
+    tone === 'error'
+      ? 'error-notice error-notice--simple'
+      : tone === 'warning'
+        ? 'error-notice error-notice--simple error-notice--warning'
+        : 'success-notice';
+
+  return <div className={className}>{children}</div>;
 }
 
 /* ------------------------------------------------------------------ */

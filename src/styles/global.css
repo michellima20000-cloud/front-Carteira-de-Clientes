@@ -581,6 +581,12 @@ svg {
   background: var(--danger-soft);
 }
 
+.error-notice--warning {
+  border: 1px solid #ecd9a6;
+  color: #7a5312;
+  background: #fffaf0;
+}
+
 .success-notice {
   border: 1px solid #b7dfc6;
   color: #14532d;

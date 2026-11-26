@@ -351,6 +351,13 @@ export function WhatsappPage() {
                     {qr.error} Se o problema continuar, clique em “Gerar novo QR Code”.
                   </Feedback>
                 )}
+
+                {qr?.storage === 'unavailable' && (
+                  <Feedback tone="warning">
+                    A sessão não está sendo salva no servidor. Depois de um reinício será
+                    necessário escanear o QR Code novamente.
+                  </Feedback>
+                )}
               </div>
             </div>
 
