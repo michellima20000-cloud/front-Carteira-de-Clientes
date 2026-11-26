@@ -81,7 +81,15 @@ export function WhatsappPage() {
 
   const loadQr = useCallback(async () => {
     try {
-      setQr(await whatsappApi.getQr());
+      const result = await whatsappApi.getQr();
+
+      // Se a sessão do servidor caiu (deploy/restart), o QR exibido não vale mais.
+      setQr((current) => {
+        if (current?.qr && result.status === 'IDLE') {
+          setNotice('A sessão do servidor reiniciou. Gere um novo QR Code para continuar.');
+        }
+        return result;
+      });
     } catch {
       // Silencia falhas de polling
     }
